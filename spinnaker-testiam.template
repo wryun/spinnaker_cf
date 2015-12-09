@@ -398,7 +398,7 @@
                         {
                            "Ref":"WebServerWaitHandle01"
                         },
-                        "\"\n"
+                        "\" -v > curlwaitconditionoutput.log\n"
                      ]
                   ]
                }
