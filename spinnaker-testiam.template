@@ -321,6 +321,23 @@
             ]
          }
       },
+
+      "WebServerWaitHandle01":{
+         "Type":"AWS::CloudFormation::WaitConditionHandle",
+         "Properties":{
+
+         }
+      },
+      "WebServerWaitCondition01":{
+         "Type":"AWS::CloudFormation::WaitCondition",
+         "DependsOn":"SpinnakerWebServer",
+         "Properties":{
+            "Handle":{
+               "Ref":"WebServerWaitHandle01"
+            },
+            "Timeout":"1800"
+         }
+      },
       
       "SpinnakerWebServer":{
          "Type":"AWS::EC2::Instance",
@@ -362,6 +379,30 @@
                   ]
                }
             ],
+            "UserData":{
+               "Fn::Base64":{
+                  "Fn::Join":[
+                     "",
+                     [
+                        "#!/bin/bash",
+                        "\n",
+                        "/opt/spinnaker/bin/stop_spinnaker.sh\n",
+                        "/opt/spinnaker/bin/start_spinnaker.sh\n",
+                        "Configure the application here\n",
+                        "Now signal the wait handle\n",
+                        "curl -X PUT -H 'Content-Type:' --data-binary '{\"Status\" : \"SUCCESS\",",
+                        "\"Reason\" : \"The application myapp is ready\",",
+                        "\"UniqueId\" : \"myapp\",",
+                        "\"Data\" : \"Done\"}' ",
+                        "\"",
+                        {
+                           "Ref":"WebServerWaitHandle01"
+                        },
+                        "\"\n"
+                     ]
+                  ]
+               }
+            },
             "Tags":[
                {
                   "Key":"Name",
