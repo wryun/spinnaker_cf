@@ -18,25 +18,7 @@ Instructions to run Spinnaker using this Cloudformation:
   Name the key pair my-aws-account-keypair. (Note: this must match your account name plus “-keypair”)
   AWS will download file my-aws-account-keypair.pem to your computer. chmod 400 the file.
   
-3.Shell in and open an SSH tunnel from your host to the virtual machine.
-create a "config" file and place it in this folder ~/.ssh/ and replace <> with your instance info ---See sample in the repository
-
- Host spinnaker-start
-   HostName <Public DNS name of instance you just created>
-   IdentityFile </path/to/my-aws-account-keypair.pem>
-   ControlMaster yes
-   ControlPath ~/.ssh/spinnaker-tunnel.ctl
-   RequestTTY no
-   LocalForward 9000 127.0.0.1:9000
-   LocalForward 8084 127.0.0.1:8084
-   LocalForward 8087 127.0.0.1:8087
-   User ubuntu
-
- Host spinnaker-stop
-   HostName <Public DNS name of instance you just created>
-   IdentityFile </path/to/my-aws-account-keypair.pem>
-   ControlPath ~/.ssh/spinnaker-tunnel.ctl
-   RequestTTY no
+3.Copy the "config" file and place it in this folder ~/.ssh/ and replace <> with your instance info ---See sample in the repository
    
 4. Copy the spinnaker-tunnel.sh file with the following content, and give it execute permissions
 
