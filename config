@@ -1,0 +1,16 @@
+Host spinnaker-start
+   HostName ec2-52-25-235-154.us-west-2.compute.amazonaws.com
+   IdentityFile ~/Desktop/730329488449-keypair.pem
+   ControlMaster yes
+   ControlPath ~/.ssh/spinnaker-tunnel.ctl
+   RequestTTY no
+   LocalForward 9000 127.0.0.1:9000
+   LocalForward 8084 127.0.0.1:8084
+   LocalForward 8087 127.0.0.1:8087
+   User ubuntu
+
+ Host spinnaker-stop
+   HostName ec2-52-25-235-154.us-west-2.compute.amazonaws.com
+   IdentityFile ~/Desktop/730329488449-keypair.pem
+   ControlPath ~/.ssh/spinnaker-tunnel.ctl
+   RequestTTY no
