@@ -1,5 +1,13 @@
-# spinnaker_cf
-Cloudformation template to launch spinnaker in non-prod environment on similar to the instructions here http://spinnaker.io/documentation/getting_started.html
+## Synopsis
+Spinnaker is a Netflix open source, multi-cloud continuous delivery platform for releasing software changes with high velocity and confidence. It provides two core sets of features: cluster management and deployment management. For more information please refer to [Spinnaker main website](http://spinnaker.io/).
+
+If you are interested in using Spinnaker on AWS, you can follow the instructions below to launch Spinnaker using CloudFormation or follow the official [Spinnaker Getting Started](http://spinnaker.io/) guide. 
+
+AWS CloudFormation allows developers and systems administrators to create a collection of AWS resources as code in a template that can be provision repeatedly in an orderly and predictable fashion. 
+
+In order to launch Spinnaker on AWS, you would need to create a an instance running Spinnaker in a VPC's private subnet, instance role, base role for instances that Spinnaker launches, and policies and permissions. The CloudFormation template in this project takes care of the creation of most of that except for the base role. The base role (BaseIAMRole) is a static role string name that Spinnaker uses to assign role to instances it creates (aka IAM:PassRole permission). This cannot be created because in order to prevent IAM resources name collision, CloudFormation does not allow you to control the IAM resource name therefore a role/user/group/policy created using CloudFormation will have a random name.
+
+##Instruction - Using CloudFormation to Launch Spinnaker
 
 Instructions to run Spinnaker using this Cloudformation:
 
