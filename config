@@ -1,5 +1,5 @@
 Host spinnaker-start
-   HostName ec2-52-25-235-154.us-west-2.compute.amazonaws.com
+   HostName <spinnaker-hostname>
    IdentityFile ~/Desktop/730329488449-keypair.pem
    ControlMaster yes
    ControlPath ~/.ssh/spinnaker-tunnel.ctl
@@ -10,7 +10,7 @@ Host spinnaker-start
    User ubuntu
 
  Host spinnaker-stop
-   HostName ec2-52-25-235-154.us-west-2.compute.amazonaws.com
+   HostName <spinnaker-hostname>
    IdentityFile ~/Desktop/730329488449-keypair.pem
    ControlPath ~/.ssh/spinnaker-tunnel.ctl
    RequestTTY no
