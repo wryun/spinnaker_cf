@@ -330,5 +330,13 @@
             ]
          }
       }
+   },
+   "Outputs":{
+      "SpinnakerPublicHostName":{
+         "Value":{
+            "Fn::GetAtt" : [ "SpinnakerWebServer", "PublicDnsName" ]
+         },
+         "Description":"Spinnaker public hostname"
+      }
    }
 }
