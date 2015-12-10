@@ -11,6 +11,6 @@ Host spinnaker-start
 
  Host spinnaker-stop
    HostName <spinnaker-hostname>
-   IdentityFile ~/Desktop/730329488449-keypair.pem
+   IdentityFile <ssh key path e.g. ~/Desktop/730329488449-keypair.pem>
    ControlPath ~/.ssh/spinnaker-tunnel.ctl
    RequestTTY no
