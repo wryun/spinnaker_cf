@@ -7,7 +7,7 @@ AWS CloudFormation allows developers and systems administrators to create a coll
 
 In order to launch Spinnaker on AWS, you would need to create a an instance running Spinnaker in a VPC's private subnet, instance role, base role for instances that Spinnaker will launch, and policies and permissions. This CloudFormation templatis in this project takes care of the creation of most of that except for the base role. The base role (BaseIAMRole) is a static string name that Spinnaker uses to assign role to instances it creates (aka IAM:PassRole permission). This cannot be created by CloudFormation because in order to prevent IAM resources name collision, CloudFormation does not allow you to control the IAM resource name therefore a role/user/group/policy created using CloudFormation will have a random name.
 
-![Alt text](images\spinnaker_architecture.png?raw=true "CloudFormation Template")
+![Alt text](images/spinnaker_architecture.png?raw=true "CloudFormation Template")
 
 ##Instruction - Using CloudFormation to Launch Spinnaker
 
@@ -43,6 +43,6 @@ Instructions to run Spinnaker using this Cloudformation:
     
     Open browser to http://localhost:9000 to access Spinnaker
     
-    You can also stop your Spinnaker tunnel
+7. To stop your Spinnaker tunnel
     >./spinnaker-tunnel.sh stop
     
