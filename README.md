@@ -13,30 +13,30 @@ In order to launch Spinnaker on AWS, you would need to create a an instance runn
 
 Instructions to run Spinnaker using this Cloudformation:
 
-1. Create an EC2 role - BaseIAMRole.
-  Goto Console > AWS Identity & Access Management > Roles.
-  Click Create New Role.
-  Set Role Name to BaseIAMRole. Click Next Step.
-  On Select Role Type screen, hit Select for Amazon EC2.
-  Click Next Step.
-  On Review screen, click Create Role.
-  EC2 instances launched with Spinnaker will be associated with this role.
+1. Create an EC2 role - BaseIAMRole. EC2 instances launched with Spinnaker will be associated with this role.
+  1. Goto Console > AWS Identity & Access Management > Roles.
+  2. Click Create New Role.
+  3. Set Role Name to BaseIAMRole. Click Next Step.
+  4. On Select Role Type screen, hit Select for Amazon EC2.
+  5. Click Next Step.
+  6. On Review screen, click Create Role.
   
 2. Create an EC2 Key Pair for connecting to your instances.
-  Goto Console > EC2 > Key Pairs.
-  Click Create Key Pair.
-  Name the key pair my-aws-account-keypair. (Note: this must match your account name plus “-keypair”)
-  AWS will download file my-aws-account-keypair.pem to your computer. chmod 400 the file.
+  1. Goto Console > EC2 > Key Pairs.
+  2. Click Create Key Pair.
+  3. Name the key pair my-aws-account-keypair
+  4. AWS will download file my-aws-account-keypair.pem to your computer. chmod 400 the file.
   
 3. Copy the [config file](config) file and place it in this folder ~/.ssh/ and replace <> with your instance info ---See sample in the repository
    
 4. Copy the [spinnaker-tunnel.sh](spinnaker-tunnel.sh) file with the following content, and give it execute permissions
 
 5.  Run Spinnaker on AWS using Cloudformation
-   On AWS Console go to Cloudformation > Create new Stack
-   Select the template file > Click Next
-   Select the key previously created, enter password for a credential to be created, and optionally change VPC and subnet info if needed
-   Accept IAM warning and click Submit
+  1. On AWS Console go to Cloudformation > Create new Stack
+  2. Select the template file > Click Next
+  3. Select the key and optionally change VPC and subnet info if needed
+  4. Accept IAM warning and click Submit
+  5. Once the status has changed to CREATE_COMPLETE. Click on the Output tab and copy the SpinnakerPublicHostName
    
 6. Execute the script to start your Spinnaker tunnel
     >./spinnaker-tunnel.sh start
