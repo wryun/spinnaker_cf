@@ -315,7 +315,8 @@
                   "Fn::Join":[
                      "",
                      [
-                        "#!/bin/bash\n",
+                        "#!/bin/bash",
+                        "\n",
                         "/opt/spinnaker/bin/stop_spinnaker.sh\n",
                         "/opt/spinnaker/bin/start_spinnaker.sh\n"
                      ]
