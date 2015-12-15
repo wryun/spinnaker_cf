@@ -25,16 +25,16 @@
    "Mappings":{
       "SpinnakerAMI140416":{
          "us-east-1":{
-            "AMI":"ami-c43d7fae"
+            "AMI":"ami-433d7329"
          },
          "us-west-1":{
-            "AMI":"ami-d32384a0"
+            "AMI":"ami-3cc8a15c"
          },
          "us-west-2":{
             "AMI":"ami-5e06143f"
          },
          "eu-west-1":{
-            "AMI":"ami-3cc8a15c"
+            "AMI":"ami-d32384a0"
          },
          "eu-central-1":{
             "AMI":"ami-9e3528f2"
