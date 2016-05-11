@@ -11,6 +11,9 @@ In order to launch Spinnaker on AWS, you would need to create a an instance runn
 
 ##Instruction - Using CloudFormation to Launch Spinnaker
 
+**Note: you can also do steps 1 and 2 by running account-setup.sh, and
+step 5 by running deploy.sh**
+
 Instructions to run Spinnaker using this Cloudformation:
 
 1. Create an EC2 role - BaseIAMRole. EC2 instances launched with Spinnaker will be associated with this role.

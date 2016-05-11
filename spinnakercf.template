@@ -16,18 +16,6 @@
       "AllowedValues": [
         "10.100.10.0/24"
       ]
-    },
-    "KeyName": {
-      "Description": "Key Pair Name",
-      "Type": "AWS::EC2::KeyPair::KeyName"
-    },
-    "Password": {
-      "NoEcho": "true",
-      "Type": "String",
-      "Description": "Password for Spinnaker User account",
-      "MinLength": "1",
-      "MaxLength": "41",
-      "ConstraintDescription": "the password must be between 1 and 41 characters"
     }
   },
   "Mappings": {
@@ -70,11 +58,6 @@
           "arn:aws:iam::aws:policy/PowerUserAccess"
         ],
         "Path": "/",
-        "LoginProfile": {
-          "Password": {
-            "Ref": "Password"
-          }
-        },
         "Policies": [
           {
             "PolicyName": "Spinnakerpassrole",
@@ -87,7 +70,11 @@
                   "Action": [
                     "iam:PassRole"
                   ],
-                  "Resource": "arn:aws:iam::730329488449:role/BaseIAMRole"
+                  "Resource": {
+                    "Fn::Join": [":", [
+                      "arn:aws:iam:", {"Ref": "AWS::AccountId"}, "role/BaseIAMRole"
+                    ]]
+                  }
                 }
               ]
             }
@@ -140,7 +127,11 @@
                   "Action": [
                     "iam:PassRole"
                   ],
-                  "Resource": "arn:aws:iam::730329488449:role/BaseIAMRole"
+                  "Resource": {
+                    "Fn::Join": [":", [
+                      "arn:aws:iam:", {"Ref": "AWS::AccountId"}, "role/BaseIAMRole"
+                    ]]
+                  }
                 }
               ]
             }
@@ -330,9 +321,7 @@
         "SpinnakerAttachGateway"
       ],
       "Properties": {
-        "KeyName": {
-          "Ref": "KeyName"
-        },
+        "KeyName": "my-aws-account-keypair",
         "IamInstanceProfile": {
           "Ref": "SpinnakerInstanceProfile"
         },
@@ -370,11 +359,10 @@
                 "\n",
                 "/opt/spinnaker/bin/stop_spinnaker.sh\n",
                 "/var/lib/dpkg/info/ca-certificates-java.postinst configure\n",
-                "sed -i 's/name: .*/name: default/g' /opt/spinnaker/config/spinnaker-local.yml\n",
                 "sed -i 's/SPINNAKER_AWS_ENABLED=false/SPINNAKER_AWS_ENABLED=true/g' /etc/default/spinnaker\n",
-                "sed -i 's/SPINNAKER_AWS_DEFAULT_REGION=.*/SPINNAKER_AWS_DEFAULT_REGION=us-west-2/g' /etc/default/spinnaker\n",
+                "sed -i 's/SPINNAKER_AWS_DEFAULT_REGION=.*/SPINNAKER_AWS_DEFAULT_REGION=", {"Ref": "AWS::Region"}, "/g' /etc/default/spinnaker\n",
                 "mkdir /home/spinnaker/.aws/\n",
-                "printf \"[default]\\n",
+                "printf \"[my-aws-account]\\n",
                 "aws_access_key_id= ",
                 {
                   "Ref": "SpinnakerAccessKey"

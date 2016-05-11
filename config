@@ -1,6 +1,6 @@
 Host spinnaker-start
    HostName <spinnaker-hostname>
-   IdentityFile ~/Desktop/account-keypair.pem
+   IdentityFile <ssh key path e.g. ~/Desktop/spinnaker.pem>
    ControlMaster yes
    ControlPath ~/.ssh/spinnaker-tunnel.ctl
    RequestTTY no
@@ -9,8 +9,8 @@ Host spinnaker-start
    LocalForward 8087 127.0.0.1:8087
    User ubuntu
 
- Host spinnaker-stop
+Host spinnaker-stop
    HostName <spinnaker-hostname>
-   IdentityFile <ssh key path e.g. ~/Desktop/account-keypair.pem>
+   IdentityFile <ssh key path e.g. ~/Desktop/spinnaker.pem>
    ControlPath ~/.ssh/spinnaker-tunnel.ctl
    RequestTTY no
